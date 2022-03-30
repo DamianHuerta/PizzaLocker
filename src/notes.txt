@@ -1,0 +1,13 @@
+TODO:
+- API calls
+
+
+API CALLS:
+- employee side
+    - call to API that sends order number and locker number and updated DB to map order number to locker number and notify user app
+    - call to API that sends order number and temp to update user app
+    - call to API that sends order number and clears DB entry once order is picked up
+    - call to API that sends barcode and returns order number
+
+- user side
+    - none i think 
