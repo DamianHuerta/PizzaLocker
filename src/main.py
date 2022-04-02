@@ -1,5 +1,6 @@
-from gettext import translation
-from traceback import print_tb
+from hardware import *
+from locker_threads import* 
+
 # from gui import *
 
 
@@ -10,30 +11,37 @@ locker_to_gpio = {}
 locker_to_order_number = {}
 
 
-def barcode_translation(barcode):
-    print("printing barcode: {}".format(barcode))
-    locker_gpio = (1,2) #dummy numbers rn
-    return locker_gpio 
 
-def read_barcode():
-    return "fakebarcode123"
+
+def locker_temp_check():
+    print("checking locker temp")
+    return
+
+
+
 
 def main():
 
-    #setting up application and window
-    # app = QApplication(sys.argv)
-    # window = Window()
     
-    #running app
-    # app.exec_()
 
-    #read barcode
-    barcode = read_barcode()
-    locker_to_gpio = barcode_translation(barcode)
-    order_number_to_locker_and_gpio[barcode] = locker_to_gpio
+    #initialize hardware
+    initialize_hardware(free_lockers)
 
-    print("printing dictionary entry")
-    print(order_number_to_locker_and_gpio[barcode])
+    #launching GUI thread
+    print("Launching GUI Thread")
+    gui_thread = myThread(1, "GUI-Thread")
+    gui_thread.start()
+
+
+
+    #start periodically sending temp information to lockers that are open
+    while 1:
+        locker_temp_check()
+        time.sleep(5)
+    
+    #waiting for gui thread to finish
+    gui_thread.join()
+
 
 
 

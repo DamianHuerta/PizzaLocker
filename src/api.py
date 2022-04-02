@@ -1,5 +1,5 @@
+#file in charge of all API requests
 import json
-from traceback import print_tb
 import requests
 
 #Functions
@@ -30,4 +30,4 @@ def delete_order_number(order_number):
 
 
 #just testing 
-order_ready(7)
+order_ready(7, 1)
