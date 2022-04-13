@@ -4,7 +4,7 @@ import threading
 
 #custom file imports
 from hardware import*
-from gui import *
+# from gui import *
 from api import *
 
 

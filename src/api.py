@@ -1,9 +1,11 @@
 #file in charge of all API requests
 import json
+from wsgiref.util import request_uri
 import requests
 
 #Functions
 api_url = "https://xsb8acpx2a.execute-api.us-east-1.amazonaws.com/dev/barcode"
+base_url = "https://xsb8acpx2a.execute-api.us-east-1.amazonaws.com/prod/locker/"
 
 
 #tells API that order number has been placed in locker number so that 
@@ -16,7 +18,16 @@ def order_ready(locker_number, order_number):
     print(initial_response['body'])
 
 #tells API that order_number has new temp. Will tell user updated temp
-def order_temp_update(order_number, temp):
+def order_temp_update(order_number, temp, locker_number):
+    print(order_number)
+    print(temp)
+    print(locker_number)
+    url = base_url + order_number
+    print(url)
+
+    r = requests.put(url, json = {"temperature": str(temp), "locker" : locker_number})
+    print(r.status_code)
+    print(r.content)
     return
 
 #asks API to give order_number for given barcode
@@ -26,8 +37,14 @@ def barcode_to_order_numer(barcode):
 
 #tells API to remove entry for order_number since it has been picked up
 def delete_order_number(order_number):
+    print("deleting order")
+    url = base_url + order_number
+    print(url)
+    r = requests.delete(url)
+    print(r.status_code)
+    print(r.content)
     return
 
 
 #just testing 
-order_ready(7, 1)
+# order_ready(7, 1)

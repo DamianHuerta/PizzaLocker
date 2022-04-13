@@ -3,7 +3,7 @@ import time
 import board
 import adafruit_dht
 
-def checkTemp():
+def checkTemp(locker_number):
     dhtDevice = adafruit_dht.DHT22(board.D18)
     while True:
         try:
