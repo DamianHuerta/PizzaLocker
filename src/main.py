@@ -1,5 +1,6 @@
 from hardware import *
 from locker_threads import* 
+from temperature import *
 
 # from gui import *
 
@@ -18,7 +19,7 @@ lockers = {1,2,3}
 
 def locker_temp_check():
     print("checking locker temp")
-    temp = read_temp(1) 
+    temp = check_temp(1)
     for locker in locker_to_order_number:
         print(locker)
         order_temp_update(locker_to_order_number[locker], temp, locker)
