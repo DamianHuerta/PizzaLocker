@@ -68,7 +68,7 @@ def barcode_reader():
 def UPC_lookup(api_key,upc):
     '''V3 API'''
 
-    url = "https://api.upcdatabase.org/product/%s/%s" % (upc, api_key)
+    url = "https://api.upcdatabase.org/product/%s?apikey=%s" % (upc, api_key)
 
     headers = {
         'cache-control': "no-cache",
