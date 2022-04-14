@@ -1,6 +1,7 @@
 #regular imports
 import time
 import threading
+from bacode import read_barcode
 
 #custom file imports
 from hardware import*
@@ -30,6 +31,8 @@ class myThread (threading.Thread):
 #that prompts user to scan their barcode
 def gui_thread():
     print("Inside GUI thread")
+    barcode = read_barcode()
+    print("Barcode read: {}".format(barcode))
     i = 0
     while 1:
         time.sleep(5)
