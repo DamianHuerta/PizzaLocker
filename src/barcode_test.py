@@ -30,11 +30,12 @@ def barcode_reader():
         ## Get the character from the HID
         buffer = fp.read(8)
         for c in buffer:
-            if ord(c) > 0:
+            #print(type(c))
+            if ord(chr(c)) > 0:
 
                 ##  40 is carriage return which signifies
                 ##  we are done looking for characters
-                if int(ord(c)) == 40:
+                if int(ord(chr(c))) == 40:
                     done = True
                     break;
 
@@ -57,12 +58,12 @@ def barcode_reader():
                 else:
 
                     ## If it is a '2' then it is the shift key
-                    if int(ord(c)) == 2:
+                    if int(ord(chr(c))) == 2:
                         shift = True
 
                     ## if not a 2 then lookup the mapping
                     else:
-                        ss += hid[int(ord(c))]
+                        ss += hid[int(ord(chr(c)))]
     return ss
 
 def UPC_lookup(api_key,upc):

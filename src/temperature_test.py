@@ -2,7 +2,7 @@
 from temperature import *
 
 def main():
-    both = checkTemp()
+    both = checkTemp(1)
     print(both[0])
     print(both[1])
 

@@ -9,7 +9,7 @@ from temperature import *
 order_number_to_locker_and_gpio = {}
 free_lockers =  {}
 locker_to_gpio = {}
-locker_to_order_number = {"1": "8723792004814898133"}
+locker_to_order_number = {"1": "9008382555852004972"}
 
 #set of all lockers
 lockers = {1,2,3}
@@ -19,11 +19,11 @@ lockers = {1,2,3}
 
 def locker_temp_check():
     print("checking locker temp")
-    temp = check_temp(1)
+    temp = checkTemp(1)
     for locker in locker_to_order_number:
         print(locker)
-        order_temp_update(locker_to_order_number[locker], temp, locker)
-        delete_order_number(locker_to_order_number[locker])
+        order_temp_update(locker_to_order_number[locker], temp[0], locker)
+        #delete_order_number(locker_to_order_number[locker])
 
     return
 
