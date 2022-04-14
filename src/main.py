@@ -41,13 +41,14 @@ def main():
     print("Launching GUI Thread")
     gui_thread = myThread(1, "GUI-Thread")
     gui_thread.start()
+    print("main thread executing after reading barcode")
 
 
 
     #start periodically sending temp information to lockers that are open
     while 1:
         locker_temp_check()
-        break
+        #break
         print("sent temp info to back end")
         time.sleep(5)
     
