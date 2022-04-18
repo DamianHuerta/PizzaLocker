@@ -15,19 +15,21 @@ def read_barcode():
             45: '_', 46: '+', 47: '{', 48: '}', 49: '|', 51: ':', 52: '"', 53: '~', 54: '<', 55: '>', 56: '?'}
 
     fp = open('/dev/hidraw0', 'rb')
-
+    print("opened")
+    print(fp)
     ss = ""
     shift = False
 
     done = False
 
     while not done:
-
+        print("looping")
         ## Get the character from the HID
         buffer = fp.read(8)
+        print(buffer)
         for c in buffer:
-            #print(type(c))
-            if ord(chr(c)) > 0:
+            print(c)
+            if ord(chr(c)) > 0 and ord(chr(c)) <= 56:
 
                 ##  40 is carriage return which signifies
                 ##  we are done looking for characters
@@ -40,12 +42,12 @@ def read_barcode():
                 if shift:
 
                     ## If it is a '2' then it is the shift key
-                    if int(ord(c)) == 2:
+                    if int(ord(chr(c))) == 2:
                         shift = True
 
                     ## if not a 2 then lookup the mapping
                     else:
-                        ss += hid2[int(ord(c))]
+                        ss += hid2[int(ord(chr(c)))]
                         shift = False
 
                 ##  If we are not shifted then use
@@ -60,5 +62,7 @@ def read_barcode():
                     ## if not a 2 then lookup the mapping
                     else:
                         ss += hid[int(ord(chr(c)))]
+    print("READ BARCODE: {}".format(ss))                   
     return ss
 
+read_barcode()

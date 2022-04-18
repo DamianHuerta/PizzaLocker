@@ -43,7 +43,8 @@ def main():
     gui_thread.start()
     print("main thread executing after reading barcode")
 
-
+    read = read_barcode()
+    print("READ BARCODE {}".format(read))
 
     #start periodically sending temp information to lockers that are open
     while 1:
