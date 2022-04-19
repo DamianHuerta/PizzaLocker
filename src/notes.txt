@@ -11,3 +11,6 @@ API CALLS:
 
 - user side
     - none i think 
+
+pins:
+- for locks: GPIO 16, 20, 21 are for lockers 1,2,3 respectively

@@ -32,6 +32,7 @@ def order_temp_update(order_number, temp, locker_number):
 
 #asks API to give order_number for given barcode
 #this is so that we can authenticate, get order number so I know which locker to unlock
+#no longer needed since barcode is order number
 def barcode_to_order_numer(barcode):
     return
 
@@ -39,7 +40,7 @@ def barcode_to_order_numer(barcode):
 def delete_order_number(order_number):
     print("deleting order")
     url = base_url + order_number
-    print(url)
+    print
     r = requests.delete(url)
     print(r.status_code)
     print(r.content)
