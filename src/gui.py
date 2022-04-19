@@ -97,7 +97,7 @@ class Window(QMainWindow):
                 lock_locker(locker)
 
                 #send API call now
-                (temp, humidty) = checkTemp(locker)
+                (temp, humidty) = (100,15) #checkTemp(locker)
                 order_number = user_barcode #might need to change this to just part of what was read
                 order_temp_update(order_number, temp, locker)
                 self.text_label.setText("User has been notified that their order is ready for pickup")
@@ -120,6 +120,9 @@ class Window(QMainWindow):
             time.sleep(5)
             lock_locker(locker_number)
             delete_order_number(barcode)
+
+            #update dictionaries
+            locker_to_order_number.pop(str(locker_number))
 
         time.sleep(5)
         self.text_label.clear()    
