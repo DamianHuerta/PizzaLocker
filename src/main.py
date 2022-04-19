@@ -1,6 +1,5 @@
 from hardware import *
 from locker_threads import* 
-from temperature import *
 
 # from gui import *
 
@@ -47,10 +46,10 @@ def main():
 
     #start periodically sending temp information to lockers that are open
     while 1:
-        locker_temp_check()
+        locker_temp_check() #might just use the one sensor since all lockers should be same temp
         #break
         print("sent temp info to back end")
-        time.sleep(5)
+        time.sleep(180) #sending temp every 3 minutes
     
     #waiting for gui thread to finish
     gui_thread.join()

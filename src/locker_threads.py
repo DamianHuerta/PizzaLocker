@@ -1,10 +1,11 @@
 #regular imports
 import time
 import threading
-from bacode import read_barcode
+# from bacode import read_barcode
+from gui import *
 
 #custom file imports
-from hardware import*
+# from hardware import*
 # from gui import *
 from api import *
 
@@ -31,17 +32,27 @@ class myThread (threading.Thread):
 #that prompts user to scan their barcode
 def gui_thread():
     print("Inside GUI thread")
-    barcode = read_barcode()
-    print("Barcode read: {}".format(barcode))
+   #  barcode = read_barcode()
+   #  print("Barcode read: {}".format(barcode))
     i = 0
-    while 1:
-        time.sleep(5)
-        print("fake work done")
+    setup_initial_gui()
+    # while 1:
+    #     time.sleep(5)
+    #   #   setup_initial_gui()
+    #     fake_barcode = read_fake_barcode()
+    #     print("fake work done")
+
+
+
     #ANNIE DO UR SHIT HERE
     #setting up application and window: ANNIE DO THIS SHIT
-    # app = QApplication(sys.argv)
-    # window = Window()
+   #  app = QApplication(sys.argv)
+   #  window = Window()
     
-    #running app
-    # app.exec_() 
+   #  #running app
+   #  window.show()
+   #  app.exec_() 
     return
+
+
+gui_thread()

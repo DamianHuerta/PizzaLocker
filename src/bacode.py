@@ -3,6 +3,8 @@
 import sys
 import json
 
+store_barcode = "atlanta2"
+
 def read_barcode():
     hid = {4: 'a', 5: 'b', 6: 'c', 7: 'd', 8: 'e', 9: 'f', 10: 'g', 11: 'h', 12: 'i', 13: 'j', 14: 'k', 15: 'l', 16: 'm',
            17: 'n', 18: 'o', 19: 'p', 20: 'q', 21: 'r', 22: 's', 23: 't', 24: 'u', 25: 'v', 26: 'w', 27: 'x', 28: 'y',
@@ -27,13 +29,13 @@ def read_barcode():
         buffer = fp.read(8)
         for c in buffer:
             #print(type(c))
-            if ord(chr(c)) > 0:
+            if ord(chr(c)) > 0 and ord(chr(c)) <= 56 :
 
                 ##  40 is carriage return which signifies
                 ##  we are done looking for characters
                 if int(ord(chr(c))) == 40:
                     done = True
-                    break;
+                    break
 
                 ##  If we are shifted then we have to
                 ##  use the hid2 characters.
