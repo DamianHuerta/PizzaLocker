@@ -85,28 +85,31 @@ class Window(QMainWindow):
 
         if split_barcode[0] == store_barcode:
             #barcode read was store barcode so now read for user barcode
+            print("Dealing with employee barcode")
             user_barcode = split_barcode[1]
             locker = get_free_locker()
             if locker == -1:
                 print("No locker available")
             else:
                 #unlock locker
+                print("going to unlock {}".format(locker))
                 self.text_label.setText("Employee, place order in locker {}".format(locker))
                 unlock_locker(locker)
                 time.sleep(5)
                 lock_locker(locker)
 
                 #send API call now
-                (temp, humidty) = (100,15) #checkTemp(locker)
+                (temp, humidty) = checkTemp(1)
                 order_number = user_barcode #might need to change this to just part of what was read
-                order_temp_update(order_number, temp, locker)
+                #order_temp_update(order_number, temp, locker)
                 self.text_label.setText("User has been notified that their order is ready for pickup")
                 
                 #update dictionaries
-                locker_to_order_number[str(locker)] = order_number
+                locker_to_order_number[locker] = order_number
 
         else :
             #read user barcode
+            order_number = barcode
             print("dealing with user barcode")
             locker_number = get_locker_number(order_number)
             if (locker_number == -1):
@@ -119,10 +122,10 @@ class Window(QMainWindow):
             unlock_locker(locker_number)
             time.sleep(5)
             lock_locker(locker_number)
-            delete_order_number(barcode)
+            #delete_order_number(barcode)
 
             #update dictionaries
-            locker_to_order_number.pop(str(locker_number))
+            locker_to_order_number.pop(locker_number)
 
         time.sleep(5)
         self.text_label.clear()    

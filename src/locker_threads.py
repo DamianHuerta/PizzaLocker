@@ -55,4 +55,4 @@ def gui_thread():
     return
 
 
-gui_thread()
+#gui_thread()

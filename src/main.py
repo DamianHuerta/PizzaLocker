@@ -5,10 +5,10 @@ from locker_threads import*
 
 
 #dictionaries
-order_number_to_locker_and_gpio = {}
-free_lockers =  {}
-locker_to_gpio = {}
-locker_to_order_number = {"1": "9008382555852004972"}
+#order_number_to_locker_and_gpio = {}
+#free_lockers =  {}
+#locker_to_gpio = {}
+#locker_to_order_number = {}
 
 #set of all lockers
 lockers = {1,2,3}
@@ -40,17 +40,17 @@ def main():
     print("Launching GUI Thread")
     gui_thread = myThread(1, "GUI-Thread")
     gui_thread.start()
-    print("main thread executing after reading barcode")
+    
 
-    read = read_barcode()
-    print("READ BARCODE {}".format(read))
+    #read = read_barcode()
+    #print("READ BARCODE {}".format(read))
 
     #start periodically sending temp information to lockers that are open
     while 1:
-        locker_temp_check() #might just use the one sensor since all lockers should be same temp
+        #locker_temp_check() #might just use the one sensor since all lockers should be same temp
         #break
         print("sent temp info to back end")
-        time.sleep(180) #sending temp every 3 minutes
+        time.sleep(380) #sending temp every 3 minutes
     
     #waiting for gui thread to finish
     gui_thread.join()

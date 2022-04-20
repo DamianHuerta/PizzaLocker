@@ -1,15 +1,16 @@
 #imports
 import time
 import board
-import adafruit_sht
-import RPi.GPIO
+import adafruit_dht
+import RPi.GPIO as GPIO
 
 #dictionaries
 locker_to_gpio = {1:16, 2:20, 3:21}
 # order_number_to_locker_and_gpio = {}
 locker_status =  {} #1 is available 0 is busy
 # locker_to_gpio = {}
-locker_to_order_number = {"1": "9008382555852004972"}
+free_lockers =  {}
+locker_to_order_number = {}
 
 
 #initialize harware. Might not actually need this
@@ -25,10 +26,11 @@ def initialize_hardware(free_lockers):
     return
 
 def unlock_locker(locker):
-    GPIO.output(locker_to_gpio[locker], 1)
+    #print(type(locker))
+    GPIO.output(locker_to_gpio[locker], 0)
 
 def lock_locker(locker):
-    GPIO.output(locker_to_gpio[locker], 0)
+    GPIO.output(locker_to_gpio[locker], 1)
 
 def get_free_locker():
     for locker in locker_status:
@@ -36,6 +38,8 @@ def get_free_locker():
             locker_status[locker] = 0
             return locker
     return -1
+
+
 
 def get_locker_number(order_number):
     for locker in locker_to_order_number:
@@ -62,3 +66,11 @@ def checkTemp(locker_number):
         except Exception as error:
             dhtDevice.exit()
             raise error
+        
+        
+#initialize_hardware({})
+#lock_locker(1)
+#time.sleep(5)
+#unlock_locker(1)
+#time.sleep(5)
+#lock_locker(1)

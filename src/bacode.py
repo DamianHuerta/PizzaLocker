@@ -1,11 +1,13 @@
 #File in charge of reading barcode scanner and returing string might use 
 #object if needed. Will use barcode object
-import sys import json
+import sys 
+import json
 
 store_barcode = "atlanta2"
 
-def read_barcode(): hid = {4: 'a', 5: 'b', 6: 'c', 7: 'd', 8: 'e', 9: 
-    'f', 10: 'g', 11: 'h', 12: 'i', 13: 'j', 14: 'k', 15: 'l', 16: 'm',
+def read_barcode(): 
+    hid = {4: 'a', 5: 'b', 6: 'c', 7: 'd', 8: 'e', 9: 
+           'f', 10: 'g', 11: 'h', 12: 'i', 13: 'j', 14: 'k', 15: 'l', 16: 'm',
            17: 'n', 18: 'o', 19: 'p', 20: 'q', 21: 'r', 22: 's', 23: 
            't', 24: 'u', 25: 'v', 26: 'w', 27: 'x', 28: 'y', 29: 'z', 
            30: '1', 31: '2', 32: '3', 33: '4', 34: '5', 35: '6', 36: 
@@ -22,39 +24,53 @@ def read_barcode(): hid = {4: 'a', 5: 'b', 6: 'c', 7: 'd', 8: 'e', 9:
             48: '}', 49: '|', 51: ':', 52: '"', 53: '~', 54: '<', 55: 
             '>', 56: '?'}
 
-    fp = open('/dev/hidraw0', 'rb') print("opened") print(fp) ss = "" 
+    fp = open('/dev/hidraw0', 'rb')
+    #print("opened")
+    #print(fp)
+    ss = ""
     shift = False
 
     done = False
 
-    while not done: print("looping")
+    while not done:
+        #print("looping")
         ## Get the character from the HID
-        buffer = fp.read(8) print(buffer) for c in buffer: <<<<<<< HEAD 
-        print(c)
-        if ord(chr(c)) > 0 and ord(chr(c)) <= 56:
+        buffer = fp.read(8)
+        #print(buffer)
+        for c in buffer:
+            #print(c)
+            if ord(chr(c)) > 0 and ord(chr(c)) <= 56:
                 ##  40 is carriage return which signifies we are done 
                 ##  looking for characters
-                if int(ord(chr(c))) == 40: done = True break
+                if int(ord(chr(c))) == 40:
+                    done = True
+                    break
 
                 ##  If we are shifted then we have to use the hid2 
                 ##  characters.
                 if shift:
 
                     ## If it is a '2' then it is the shift key
-                    if int(ord(chr(c))) == 2: shift = True
+                    if int(ord(chr(c))) == 2: 
+                        shift = True
 
                     ## if not a 2 then lookup the mapping
-                    else: ss += hid2[int(ord(chr(c)))] shift = False
+                    else: 
+                        ss += hid2[int(ord(chr(c)))] 
+                        shift = False
 
                 ##  If we are not shifted then use the hid characters
 
                 else:
 
                     ## If it is a '2' then it is the shift key
-                    if int(ord(chr(c))) == 2: shift = True
+                    if int(ord(chr(c))) == 2: 
+                        shift = True
 
                     ## if not a 2 then lookup the mapping
-                    else: ss += hid[int(ord(chr(c)))] print("READ 
-    BARCODE: {}".format(ss)) return ss
+                    else: 
+                        ss += hid[int(ord(chr(c)))] 
+    print("READ BARCODE: {}".format(ss)) 
+    return ss
 
-read_barcode()
+#read_barcode()
