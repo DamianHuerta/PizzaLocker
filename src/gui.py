@@ -95,6 +95,7 @@ class Window(QMainWindow):
                 #unlock locker
                 print("going to unlock {}".format(locker))
                 self.text_label.setText("Employee, place order in locker {}".format(locker))
+                QApplication.processEvents()
                 unlock_locker(locker)
                 time.sleep(5)
                 lock_locker(locker)
@@ -104,7 +105,7 @@ class Window(QMainWindow):
                 order_number = user_barcode #might need to change this to just part of what was read
                 order_temp_update(order_number, temp, locker)
                 self.text_label.setText("User has been notified that their order is ready for pickup")
-                
+                QApplication.processEvents() 
                 #update dictionaries
                 locker_to_order_number[locker] = order_number
 
@@ -120,6 +121,7 @@ class Window(QMainWindow):
 
             #notify user where their order is placed and unlock
             self.text_label.setText("User, locker {} has been unlocked. Please close after retreiving order".format(locker_number))
+            QApplication.processEvents()
             unlock_locker(locker_number)
             time.sleep(5)
             lock_locker(locker_number)
@@ -129,7 +131,8 @@ class Window(QMainWindow):
             locker_to_order_number.pop(locker_number)
 
         time.sleep(5)
-        self.text_label.clear()    
+        self.text_label.clear()
+        QApplication.processEvents()    
         self.scan()
 
 
