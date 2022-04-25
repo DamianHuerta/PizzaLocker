@@ -8,6 +8,7 @@ from gui import *
 # from hardware import*
 # from gui import *
 from api import *
+worker_start = False
 
 
 
@@ -35,7 +36,9 @@ def gui_thread():
    #  barcode = read_barcode()
    #  print("Barcode read: {}".format(barcode))
     i = 0
+
     setup_initial_gui()
+
     # while 1:
     #     time.sleep(5)
     #   #   setup_initial_gui()
@@ -53,6 +56,7 @@ def gui_thread():
    #  window.show()
    #  app.exec_() 
     return
+
 
 
 #gui_thread()

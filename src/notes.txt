@@ -14,3 +14,19 @@ API CALLS:
 
 pins:
 - for locks: GPIO 16, 20, 21 are for lockers 1,2,3 respectively
+
+Pinout:
+
+1- 3.3V power to temp sensor
+2- 5V power for touch screen
+4- 5V power to breadboard (left)
+9- Gnd for temp sensor
+12- digital signal for temp sensor
+14- ground for breadboard(left)
+36- control for lock1 
+38- control for lock2
+40- control for lock3
+
+
+Breadboard: left side is used for common 5v and ground for relay
+right side common 9v and gnd. 9v goes to input on each relay for each lock and  gnd goes to each solenoid lock

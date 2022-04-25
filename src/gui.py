@@ -7,10 +7,11 @@ from bacode import *
 from hardware import *
 
 
+
 class Window(QMainWindow):
     def __init__(self):
        super().__init__()
-       self.setGeometry(300, 300, 600, 400)
+       self.setGeometry(0, -10, 1950, 1100)
        self.setWindowTitle("Pizza Locker GUI")
        self.UiButtons()
     #    self.labels()
@@ -101,7 +102,7 @@ class Window(QMainWindow):
                 #send API call now
                 (temp, humidty) = checkTemp(1)
                 order_number = user_barcode #might need to change this to just part of what was read
-                #order_temp_update(order_number, temp, locker)
+                order_temp_update(order_number, temp, locker)
                 self.text_label.setText("User has been notified that their order is ready for pickup")
                 
                 #update dictionaries
@@ -142,4 +143,5 @@ def setup_initial_gui():
     window = Window()
     app.exec_() 
 
-
+#app = QApplication(sys.argv)
+#window = Window()
